@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:viewmodels="clr-namespace:Mde.Oef.RPSGame.ViewModels" 
+             x:DataType="viewmodels:SettingsViewModel"
+             mc:Ignorable="d"
+             Style="{StaticResource PageStyle}"
+             Title="Settings"
+             x:Class="Mde.Oef.RPSGame.Pages.SettingsPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Image Source="background.png" Aspect="AspectFill" Opacity="0.1" />
+                <StackLayout Padding="10">
+                    <Label>Username</Label>
+                    <Entry Text="{Binding UserName }"  Keyboard="Text"></Entry>
+                    <Label Text="{Binding UserNameError}"
+                           IsVisible="{Binding UserNameError, Converter={StaticResource ErrorLabelVisibility}}"
+                           Style="{StaticResource ErrorLabel}"></Label>
+                    <Label>E-mail</Label>
+                    <Entry Text="{Binding Email }" Keyboard="Email"></Entry>
+                    <Label Text="{Binding EmailError}" 
+                           IsVisible="{Binding EmailError, Converter={StaticResource ErrorLabelVisibility}}"
+                           Style="{StaticResource ErrorLabel}"></Label>
+                    <Label>Birthdate</Label>
+                    <DatePicker Date="{Binding BirthDate }" />
+                    <Label Text="{Binding BirthDateError}" 
+                           IsVisible="{Binding EmailError, Converter={StaticResource ErrorLabelVisibility}}"
+                           Style="{StaticResource ErrorLabel}"></Label>
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                        <Label HorizontalOptions="StartAndExpand">Allow processing of my personal data</Label>
+                        <Switch IsToggled="{Binding Consent}" HorizontalOptions="End"></Switch>
+                    </StackLayout>
+                    <Label Text="{Binding ConsentError}" 
+                           IsVisible="{Binding EmailError, Converter={StaticResource ErrorLabelVisibility}}"
+                           Style="{StaticResource ErrorLabel}"></Label>
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,10">
+                        <Label HorizontalOptions="StartAndExpand">Receive weekly stats</Label>
+                        <Switch IsToggled="{Binding WeeklyStats}" HorizontalOptions="End"></Switch>
+                    </StackLayout>
+
+                    <Button Text="Save" 
+                            Command="{Binding SaveCommand}"
+                            HorizontalOptions="Center"></Button>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>
