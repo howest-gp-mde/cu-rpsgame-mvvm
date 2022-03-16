@@ -10,6 +10,7 @@
         <ResourceDictionary>
 
             <conv:ErrorMessageToVisibleConverter x:Key="ErrorLabelVisibility" />
+            <conv:HandToImageSourceConverter x:Key="HandToImageSourceConverter" />
 
             <Color x:Key="ColorSuccess">#4fc949</Color>
             <Color x:Key="ColorFail">#c7484c</Color>

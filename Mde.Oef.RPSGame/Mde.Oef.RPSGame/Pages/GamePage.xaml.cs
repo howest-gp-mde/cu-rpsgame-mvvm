@@ -18,7 +18,6 @@ namespace Mde.Oef.RPSGame.Pages
     {
         //private Game game;
         private Dictionary<Hand, VisualElement> playerButtons;
-        private Dictionary<Hand, ImageSource> handImages;
 
         public GamePage()
         {
@@ -28,20 +27,12 @@ namespace Mde.Oef.RPSGame.Pages
 
             // initialize buttons dictionary to link a button to each Hand
             // see: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers#collection-initializers
-            playerButtons = new Dictionary<Hand, VisualElement> {
+            playerButtons = new Dictionary<Hand, VisualElement>
+            {
                 [Hand.Rock] = playerHandRock,
                 [Hand.Paper] = playerHandPaper,
                 [Hand.Scissors] = playerHandScissors
             };
-
-            // initialize images dictionary to link an image to each Hand
-            handImages = new Dictionary<Hand, ImageSource>
-            {
-                [Hand.Rock] = ImageSource.FromFile("rock.png"),
-                [Hand.Paper] = ImageSource.FromFile("paper.png"),
-                [Hand.Scissors] = ImageSource.FromFile("scissors.png"),
-            };
-
         }
 
         private void ResetUI()
@@ -89,9 +80,6 @@ namespace Mde.Oef.RPSGame.Pages
         {
             var viewModel = (GameViewModel)BindingContext;
 
-            playerChoiceImage.Source = handImages[viewModel.PlayerHand];
-            computerChoiceImage.Source = handImages[viewModel.ComputerHand];
-
             //set labels
             lblHandAction.Text = "beats";
             if (viewModel.Result == GameResult.PlayerLost)
@@ -117,69 +105,12 @@ namespace Mde.Oef.RPSGame.Pages
                 lblGameResult.TextColor = (Color)Application.Current.Resources["ColorWarn"];
             }
 
-            //animations
+            //sequential animations
             await AnimatePlayerChoice(viewModel.PlayerHand);
             await AnimateComputerChoice();
             await AnimateGameResult();
             await AnimateStatistics();
         }
-
-        //private async void PlayerHand_Click(object sender, EventArgs e)
-        //{
-        //    var button = sender as VisualElement;
-        //    var playerChoice = playerButtons.Single((keyValuePair) => keyValuePair.Value == button).Key;
-
-        //    var statistic = game.Play(playerChoice);
-
-        //    playerChoiceImage.Source = handImages[statistic.PlayerHand];
-        //    computerChoiceImage.Source = handImages[statistic.ComputerHand];
-
-        //    lblHandAction.Text = "beats";
-        //    if (statistic.Result == GameResult.PlayerLost)
-        //    {
-        //        lblWinningHand.Text = statistic.ComputerHand.ToString();
-        //        lblLosingHand.Text = statistic.PlayerHand.ToString();
-        //        lblGameResult.Text = "YOU LOSE";
-        //        lblGameResult.TextColor = (Color) Application.Current.Resources["ColorFail"];
-        //    }
-        //    else if (statistic.Result == GameResult.PlayerWin)
-        //    {
-        //        lblWinningHand.Text = statistic.PlayerHand.ToString();
-        //        lblLosingHand.Text = statistic.ComputerHand.ToString();
-        //        lblGameResult.Text = "YOU WIN";
-        //        lblGameResult.TextColor = (Color) Application.Current.Resources["ColorSuccess"];
-        //    }
-        //    else
-        //    {
-        //        lblHandAction.Text = "can't beat";
-        //        lblWinningHand.Text = statistic.PlayerHand.ToString();
-        //        lblLosingHand.Text = statistic.ComputerHand.ToString();
-        //        lblGameResult.Text = "DRAW";
-        //        lblGameResult.TextColor = (Color)Application.Current.Resources["ColorWarn"];
-        //    }
-
-        //    //save stats 
-        //    await statisticsService.AddStatistic(statistic);
-        //    var statisticsSummary = await statisticsService.GetSummary();
-        //    lblTotalWins.Text = statisticsSummary.Wins.ToString();
-        //    lblTotalLosses.Text = statisticsSummary.Losses.ToString();
-        //    lblTotalDraws.Text = statisticsSummary.Draws.ToString();
-
-
-        //    //animations
-        //    await AnimatePlayerChoice(playerChoice);
-        //    await AnimateComputerChoice();
-        //    await AnimateGameResult();
-        //    await AnimateStatistics();
-        //}
-
-        //private async void PlayAgain_Clicked(object sender, EventArgs e)
-        //{
-        //    //easy way out without resettings everying:
-        //    //simply re-navigate to this page an discard current page
-        //    Navigation.InsertPageBefore(new GamePage(), this);
-        //    await Navigation.PopAsync(false);
-        //}
 
         private async Task AnimateGameStart()
         {

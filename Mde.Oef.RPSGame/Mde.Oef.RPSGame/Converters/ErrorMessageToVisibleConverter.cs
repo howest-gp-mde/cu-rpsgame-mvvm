@@ -11,7 +11,7 @@ namespace Mde.Oef.RPSGame.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             // if string value is empty or null then return false (Not Visible)
-            if(value != null)
+            if (value != null)
             {
                 if (value is string)
                 {
@@ -20,7 +20,7 @@ namespace Mde.Oef.RPSGame.Converters
                 }
                 else
                 {
-                    throw new ArgumentException($"{nameof(value)} must be a string, *!");
+                    throw new ArgumentException($"{nameof(value)} must be a string");
                 }
             }
             return false;

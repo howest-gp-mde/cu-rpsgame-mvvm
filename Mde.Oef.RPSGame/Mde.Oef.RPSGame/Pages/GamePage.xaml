@@ -57,7 +57,7 @@
                         <StackLayout>
                             <Label Text="You" HorizontalTextAlignment="Center"></Label>
                             <Frame Style="{x:StaticResource HandFrameWithBackground}">
-                                <Image x:Name="playerChoiceImage" Source="rock.png" />
+                                <Image x:Name="playerChoiceImage" Source="{ Binding PlayerHand, Converter={x:StaticResource HandToImageSourceConverter }}" />
                             </Frame>
                         </StackLayout>
                         <Frame HasShadow="False" BackgroundColor="Transparent"
@@ -69,7 +69,7 @@
                         <StackLayout>
                             <Label Text="Computer" HorizontalTextAlignment="Center"></Label>
                             <Frame Style="{x:StaticResource HandFrameWithBackground}">
-                                <Image x:Name="computerChoiceImage" Source="rock.png" />
+                                <Image x:Name="computerChoiceImage" Source="{ Binding ComputerHand, Converter={x:StaticResource HandToImageSourceConverter }}" />
                             </Frame>
                         </StackLayout>
                     </FlexLayout>
