@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Mde.Oef.RPSGame.Domain;
+using Mde.Oef.RPSGame.Domain.Services;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Mde.Oef.RPSGame.Domain.Services
+namespace Mde.Oef.RPSGame.Infrastructure
 {
-    public class StatisticsService
+    public class StatisticsService : IStatisticsService
     {
         private static List<GameStatistic> gameStatistics = new List<GameStatistic>();
 
@@ -26,7 +28,7 @@ namespace Mde.Oef.RPSGame.Domain.Services
                 Wins = gameStatistics.Count(s => s.Result == GameResult.PlayerWin),
                 Losses = gameStatistics.Count(s => s.Result == GameResult.PlayerLost),
                 Draws = gameStatistics.Count(s => s.Result == GameResult.Draw),
-            });;
+            }); ;
         }
 
 

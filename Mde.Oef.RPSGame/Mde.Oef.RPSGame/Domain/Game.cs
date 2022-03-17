@@ -2,7 +2,7 @@
 
 namespace Mde.Oef.RPSGame.Domain
 {
-    public class Game
+    public class Game : IGame
     {
         private Random random;
         private int possibleHandValues;
@@ -27,7 +27,7 @@ namespace Mde.Oef.RPSGame.Domain
 
         public Hand GetComputerChoice()
         {
-            return (Hand) random.Next(1, possibleHandValues);
+            return (Hand)random.Next(1, possibleHandValues);
         }
 
         public GameResult CalculateResult(Hand playerHand, Hand computerHand)
@@ -35,14 +35,14 @@ namespace Mde.Oef.RPSGame.Domain
             int playerValue = (int)playerHand;
             int computerValue = (int)computerHand;
 
-            if (playerValue + computerValue <= 1) 
+            if (playerValue + computerValue <= 1)
                 throw new ArgumentException("Both hands should have a value other than Hidden");
 
             GameResult result = GameResult.Draw;
 
-            if(playerHand != computerHand)
+            if (playerHand != computerHand)
             {
-                if(computerHand == playerHand + 1 || computerHand == playerHand - possibleHandValues + 2)
+                if (computerHand == playerHand + 1 || computerHand == playerHand - possibleHandValues + 2)
                     result = GameResult.PlayerLost;
                 else
                     result = GameResult.PlayerWin;

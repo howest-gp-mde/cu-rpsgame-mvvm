@@ -28,7 +28,7 @@ namespace Mde.Oef.RPSGame.Converters
                 throw new ArgumentException($"{nameof(value)} must be of type Hand");
             }
             //default value is a rock image...
-            return ImageSource.FromFile("rock.png"); ;
+            return ImageSource.FromFile("rock.png");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

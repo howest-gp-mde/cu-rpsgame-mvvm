@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Mde.Oef.RPSGame.Domain;
+using Mde.Oef.RPSGame.Domain.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mde.Oef.RPSGame.Domain.Services
+namespace Mde.Oef.RPSGame.Infrastructure
 {
-    public class SettingsService
+    public class SettingsService : ISettingsService
     {
         private static Settings inMemorySettings = new Settings
         {

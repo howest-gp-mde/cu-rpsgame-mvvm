@@ -1,6 +1,7 @@
 ﻿using FreshMvvm;
 using Mde.Oef.RPSGame.Domain;
 using Mde.Oef.RPSGame.Domain.Services;
+using Mde.Oef.RPSGame.Infrastructure;
 using System;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -9,16 +10,16 @@ namespace Mde.Oef.RPSGame.ViewModels
 {
     public class GameViewModel : FreshBasePageModel
     {
-        protected readonly StatisticsService statisticService;
-        protected readonly Game game;
+        protected readonly IStatisticsService statisticService;
+        protected readonly IGame game;
 
         public event EventHandler GameStarted;
 
         //initialize fields
-        public GameViewModel()
+        public GameViewModel(IGame game, IStatisticsService statisticsService)
         {
-            statisticService = new StatisticsService();
-            game = new Game();
+            this.statisticService = statisticsService;
+            this.game = game;
         }
 
         ////view model is Pushed to

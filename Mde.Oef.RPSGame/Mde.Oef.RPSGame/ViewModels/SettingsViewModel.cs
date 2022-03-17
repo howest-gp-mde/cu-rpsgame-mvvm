@@ -11,13 +11,13 @@ namespace Mde.Oef.RPSGame.ViewModels
 {
     public class SettingsViewModel : FreshBasePageModel
     {
-        protected readonly SettingsService settingsService;
+        protected readonly ISettingsService settingsService;
         protected readonly SettingsValidator validator;
 
-        public SettingsViewModel()
+        public SettingsViewModel(ISettingsService settingsService)
         {
-            settingsService = new SettingsService();
-            validator = new SettingsValidator();
+            this.settingsService = settingsService;
+            this.validator = new SettingsValidator();
         }
 
         public override async void Init(object initData)
