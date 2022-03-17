@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              x:DataType="vm:MainViewModel"
              Style="{StaticResource PageStyle}"
-             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasNavigationBar="True"
              Title="Rock Paper Scissors"
              x:Class="Mde.Oef.RPSGame.Pages.MainPage">
     <ContentPage.Content>

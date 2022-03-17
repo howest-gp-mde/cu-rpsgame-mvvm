@@ -14,20 +14,26 @@ namespace Mde.Oef.RPSGame
     {
         public App()
         {
-            InitializeComponent();
-
-            MainPage = new FreshNavigationContainer(
-                FreshPageModelResolver.ResolvePageModel<MainViewModel>()
-            );
-
             //registreer de application services
-            FreshIOC.Container.Register<IGame, Game>();                             //transient
+            FreshIOC.Container.Register<IGame, Game>().AsMultiInstance();                             //transient
 
             //registreer de infrastructure services
-            FreshIOC.Container.Register<ISettingsService, SettingsService>();       //transient
-            FreshIOC.Container.Register<IStatisticsService, StatisticsService>();   //transient
+            FreshIOC.Container.Register<ISettingsService, SettingsService>().AsMultiInstance();       //transient
+            FreshIOC.Container.Register<IStatisticsService, StatisticsService>().AsMultiInstance();   //transient
 
-            //2. Resolve je dependencies --> Dependency Injection 
+
+            InitializeComponent();
+
+            //MainPage = new FreshNavigationContainer(
+            //    FreshPageModelResolver.ResolvePageModel<MainViewModel>()
+            //);
+            var flyoutContainer = new FreshMasterDetailNavigationContainer();
+            flyoutContainer.Init("Rock Paper Scissors", "scissors.png");
+            flyoutContainer.AddPage<MainViewModel>("Main");
+            flyoutContainer.AddPage<GameViewModel>("Play");
+            flyoutContainer.AddPage<SettingsViewModel>("Settings");
+            MainPage = flyoutContainer;
+
 
         }
 
